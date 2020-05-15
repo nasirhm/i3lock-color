@@ -42,6 +42,7 @@ void render_lock(uint32_t* resolution, xcb_drawable_t drawable);
 void draw_image(uint32_t* resolution, cairo_t* xcb_ctx);
 void init_colors_once(void);
 void redraw_screen(void);
+static char* get_keylayoutname(int mode, xcb_connection_t* conn)
 void clear_indicator(void);
 void start_time_redraw_timeout(void);
 void* start_time_redraw_tick_pthread(void* arg);

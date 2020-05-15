@@ -1112,6 +1112,57 @@ void redraw_screen(void) {
 }
 
 /*
+ * fetches the keylayout name
+ *      -1 (do not)
+ * arg: 0 (show full string returned)
+ *      1 (show the text, sans parenthesis)
+ *      2 (show just what's in the parenthesis)
+ *
+ * credit to the XKB/xcb implementation (no libx11) from https://gist.github.com/bluetech/6061368
+ * docs are really sparse, so finding some random implementation was nice
+ */
+static char* get_keylayoutname(int mode, xcb_connection_t* conn) {
+    if (mode < 0 || mode > 2) return NULL;
+    char* newans = NULL, *answer = xcb_get_key_group_names(conn);
+    DEBUG("keylayout answer is: [%s]\n", answer);
+    switch (mode) {
+        case 1:
+            // truncate the string at the first parens
+            for(int i = 0; answer[i] != '\0'; ++i) {
+                if (answer[i] == '(') {
+                    if (i != 0 && answer[i - 1] == ' ') {
+                        answer[i - 1] = '\0';
+                        break;
+                    } else {
+                        answer[i] = '\0';
+                        break;
+                    }
+                }
+            }
+            break;
+        case 2:
+            for(int i = 0; answer[i] != '\0'; ++i) {
+                if (answer[i] == '(') {
+                    newans = &answer[i + 1];
+                } else if (answer[i] == ')' && newans != NULL) {
+                    answer[i] = '\0';
+                    break;
+                }
+            }
+            if (newans != NULL)
+                answer = newans;
+            break;
+        case 0:
+            // fall through
+        default:
+            break;
+    }
+    DEBUG("answer after mode parsing: [%s]\n", answer);
+    // Free symbolic names structures
+    return answer;
+}
+
+/*
  * Hides the unlock indicator completely when there is no content in the
  * password buffer.
  *

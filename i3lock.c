@@ -175,7 +175,6 @@ char* noinput_text = "no input";
 char* lock_text = "locking…";
 char* lock_failed_text = "lock failed!";
 int   keylayout_mode = -1;
-char* layout_text = NULL;
 char* greeter_text = "";
 
 /* opts for blurring */
@@ -2288,7 +2287,7 @@ int main(int argc, char *argv[]) {
      * file descriptor becomes readable). */
     ev_invoke(main_loop, xcb_check, 0);
 
-    if (show_clock || bar_enabled || slideshow_enabled) {
+    if (show_clock || keylayout_mode >= 0 || bar_enabled || slideshow_enabled) {
         if (redraw_thread) {
             struct timespec ts;
             double s;
