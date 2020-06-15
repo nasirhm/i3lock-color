@@ -18,6 +18,7 @@
 ![GitHub stars](https://img.shields.io/github/stars/Raymo111/i3lock-color)
 ![GitHub watchers](https://img.shields.io/github/watchers/Raymo111/i3lock-color)
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnasirhm%2Fi3lock-color.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnasirhm%2Fi3lock-color?ref=badge_shield)
 
 **A modern version of i3lock with color functionality by [eBrnd](https://github.com/eBrnd/i3lock-color), maintained for a few years by [PandorasFox](https://github.com/PandorasFox) and now maintained and being developed by [Raymo111](https://github.com/Raymo111).**
 
@@ -119,3 +120,7 @@ On OpenBSD the `i3lock` binary needs to be setgid `auth` to call the authenticat
 
 ## Upstream
 Please submit pull requests for i3lock things to https://github.com/i3/i3lock and pull requests for additional features on top of regular i3lock at https://github.com/Raymo111/i3lock-color.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnasirhm%2Fi3lock-color.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnasirhm%2Fi3lock-color?ref=badge_large)
